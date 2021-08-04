@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            json_to_tabel1
+        </title>
+    </head>
+    <body>
+        <h1 id="h1" style=" color : green;"></h1>
+        <p id = "p">
+
+        </p>
+        <button onclick = "print()">create headers</button>
+
+        <table id="tabel" border=2 align="center">
+            
+        </table>
+        <script>
+            document.getElementById("h1").innerHTML="rajesh";
+            var list=[
+			{ "col_1": "val_11", "col_3": "val_13" },
+			{ "col_2": "val_22", "col_3": "val_23" },
+			{ "col_1": "val_31", "col_3": "val_33" }
+		];
+        var list1=[
+    {
+      "name": "Molecule Man",
+      "age": 29,
+      "secretIdentity": "Dan Jukes",
+      "powers": [
+        "Radiation resistance",
+        "Turning tiny",
+        "Radiation blast"
+      ]
+    },
+    {
+      "name": "Madame Uppercut",
+      "age": 39,
+      "secretIdentity": "Jane Wilson",
+      "powers": [
+        "Million tonne punch",
+        "Damage resistance",
+        "Superhuman reflexes"
+      ]
+    },
+    {
+      "name": "Eternal Flame",
+      "age": 1000000,
+      "secretIdentity": "Unknown",
+      "powers": [
+        "Immortality",
+        "Heat Immunity",
+        "Inferno",
+        "Teleportation",
+        "Interdimensional travel"
+      ]
+    }
+  ];
+
+        function print(){
+            printTable(list)
+            printTable(list1)
+        }
+        function printTable(employee){
+            var header=[];
+            var headerString="<tr>"
+            for(let i=0;i<employee.length;i++){
+                var header1=employee[i]; 
+                for(j in header1){
+                    header.push(j);
+                }
+            }
+            header2=[...new Set(header)];// to remove duplicates from headers
+            for(let i=0;i<header2.length;i++){
+                headerString+="<th>"+header2[i]+"</th>";
+            }
+            headerString+="</tr>";
+            document.getElementById("tabel").innerHTML+=(headerString);
+
+            
+            for(let i=0;i<employee.length;i++){
+               var valuesString ="<tr>"
+                for(let j=0;j<header2.length;j++){
+                    if(employee[i][header2[j]]==null)
+                    { 
+                        valuesString+="<td>"+""+"</td>";
+                    }
+                    else{
+                    valuesString+="<td>"+employee[i][header2[j]]+"</td>";}
+                }
+                valuesString+="</tr>";
+                console.log(valuesString);
+                document.getElementById("tabel").innerHTML+=valuesString;
+            }
+            
+        }
+        </script>
+    </body>
+
+</html>
